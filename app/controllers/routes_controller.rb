@@ -18,7 +18,7 @@ class RoutesController < ApplicationController
     if @route.save
       redirect_to @route
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

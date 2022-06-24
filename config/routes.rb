@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :trains
-  get 'welcome/index'
-
   resources :railway_stations
+  resources :routes
+  get 'welcome/index'
 
   # Defines the root path route ("/")
   # root "articles#index"

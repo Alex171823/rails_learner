@@ -24,10 +24,8 @@ class TrainsController < ApplicationController
     respond_to do |format|
       if @train.save
         format.html { redirect_to train_url(@train), notice: 'Train was successfully created.' }
-        format.json { render :show, status: :created, location: @train }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,10 +35,8 @@ class TrainsController < ApplicationController
     respond_to do |format|
       if @train.update(train_params)
         format.html { redirect_to train_url(@train), notice: 'Train was successfully updated.' }
-        format.json { render :show, status: :ok, location: @train }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,7 +47,6 @@ class TrainsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to trains_url, notice: 'Train was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

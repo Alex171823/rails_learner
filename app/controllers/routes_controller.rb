@@ -1,12 +1,11 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: %i[show edit update destroy]
 
   def index
     @routes = Route.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @route = Route.new
@@ -22,8 +21,7 @@ class RoutesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @route.update(route_params)

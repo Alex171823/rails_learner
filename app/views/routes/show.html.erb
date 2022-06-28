@@ -1,8 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @route %>
+<%= render @route %> <br>
+<% if @route.trains.empty? %>
+  <%= 'No trains for this route'  %>
+<% else %>
+  <p><strong>Trains on route:</strong></p>
+ <% @route.trains.each do |train| %>
+  <%= train.number %>
+  <% end %>
+<% end %>
 
 <div>
+  <br>
   <%= link_to "Edit this route", edit_route_url(@route) %> |
   <%= link_to "Back to routes", routes_path %>
 

@@ -36,3 +36,7 @@
 
 # IDE
 .idea
+.vscode
+
+# Rubocop settings
+.rubocop.yml

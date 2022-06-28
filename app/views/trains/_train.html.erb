@@ -1,6 +1,11 @@
 <div id="<%= dom_id train %>">
   <p>
-    <strong>Number:</strong>
-    <%= train.number %>
+    <div style='border: 3px solid black; padding: 5px'>
+      <strong>Title:</strong>
+      <%= train.title %>
+      <%= link_to "Show", train %>
+      <%= link_to "Edit", edit_train_path(train) %>
+      <%= button_to "Destroy", train, method: :delete %>
+    </div>
   </p>
 </div>

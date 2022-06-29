@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :railway_station_ids, "Stations for route" %>
+    <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true } %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

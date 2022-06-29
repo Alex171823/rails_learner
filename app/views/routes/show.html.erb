@@ -10,8 +10,20 @@
   <% end %>
 <% end %>
 
+<p>Станции в маршруте</p>
+<p>
+  <% if @route.railway_stations.empty? %>
+    No railway stations for this route
+  <% else %>
+    <ul>
+      <% @route.railway_stations.each do |station| %>
+        <li><%= station.title %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</p>
+
 <div>
-  <br>
   <%= link_to "Edit this route", edit_route_url(@route) %> |
   <%= link_to "Back to routes", routes_path %>
 

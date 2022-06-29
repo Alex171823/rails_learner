@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <strong>Train number: </strong><%= @train.number %> <br>
-<%= @train.route.nil? ? 'Route doesn\'t set for this train' : "Route: #{@train.route.name}"%>
+<%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%>
 
 <div style='margin-top: 10px;'>
   <%= link_to "Edit this train", edit_train_path(@train) %> |

@@ -1,12 +1,12 @@
 class TrainsController < ApplicationController
   before_action :set_train, only: %i[show edit update destroy]
 
-  # GET /trains or /trains.json
+  # GET /trains
   def index
     @trains = Train.all
   end
 
-  # GET /trains/1 or /trains/1.json
+  # GET /trains/1
   def show; end
 
   # GET /trains/new
@@ -17,9 +17,8 @@ class TrainsController < ApplicationController
   # GET /trains/1/edit
   def edit; end
 
-  # POST /trains or /trains.json
+  # POST /trains
   def create
-    p train_params[:current_station]
     @train = Train.new(train_params)
     respond_to do |format|
       if @train.save
@@ -30,7 +29,7 @@ class TrainsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /trains/1 or /trains/1.json
+  # PATCH/PUT /trains/1
   def update
     respond_to do |format|
       if @train.update(train_params)
@@ -41,7 +40,7 @@ class TrainsController < ApplicationController
     end
   end
 
-  # DELETE /trains/1 or /trains/1.json
+  # DELETE /trains/1
   def destroy
     @train.destroy
 

@@ -3,23 +3,30 @@
 <strong>Train number: </strong><%= @train.number %> <br>
 <%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%> <br>
 
-<% open_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Плацкарт' } %>
-<% coupe_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Купе' } %>
+<% coupe_wagons = @train.wagons.filter { |w| w.type == 'CoupeWagon' } %>
+<% economy_wagons = @train.wagons.filter { |w| w.type == 'EconomyWagon' } %>
 
-<p>Плацкартных выгонов: <%= open_wagons.count %></p>
-<p>Купейных выгонов: <%= coupe_wagons.count %></p>
+<p>Coupe wagons total: <%= coupe_wagons.count %> </p>
+<p>Economy wagons total: <%= economy_wagons.count %> </p>
 
-<% wagon_places = 0 %>
-<% open_wagons.each { |w| wagon_places += w.top_places} %>
-<%= wagon_places %>
+<% places = 0 %>
+<% coupe_wagons.each { |w| places += w.top_seats } %>
+<p>Верхних купейных мест:<%= places %> </p>
 
-<%# <p>Верхних купейных мест:<%= open_wagons_lower_places %> </p>
-<%# <p>Нижних купейных мест: <%= open_wagons_lower_places %> </p>
-<%# <p>Верхних плацкартных мест: <%= open_wagons_lower_places %> </p> %>
-<%# <p>Нижних плацкартных мест: <%= open_wagons_lower_places %> </p> %> %> %>
+<% places = 0 %>
+<% coupe_wagons.each { |w| places += w.bottom_seats } %>
+<p>Нижних купейных мест: <%= places %> </p>
+
+<% places = 0 %>
+<% economy_wagons.each { |w| places += w.top_seats } %>
+<p>Верхних плацкартных мест: <%= places %> </p>
+
+<% places = 0 %>
+<% economy_wagons.each { |w| places += w.bottom_seats } %>
+<p>Нижних плацкартных мест: <%= places   %> </p>
 
 <div style='margin-top: 10px;'>
-  <%= link_to "Edit this train", edit_train_path(@train) %> |
+  <%= link_to "Edit this train", edit_train_path(@train) %>
   <%= link_to "Back to trains", trains_path %>
 
   <%= button_to "Destroy this train", @train, method: :delete %>

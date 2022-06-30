@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<strong>Wagon number: </strong><%= @wagon.number %> <br>
+
+<div style='margin-top: 10px;'>
+  <%= link_to "Edit this wagon", edit_wagon_path(@wagon) %> |
+  <%= link_to "Back to wagons", wagons_path %>
+
+  <%= button_to "Destroy this wagon", @wagon, method: :delete %>
+</div>

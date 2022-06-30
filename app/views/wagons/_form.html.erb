@@ -1,0 +1,32 @@
+<%= form_with(model: wagon) do |form| %>
+  <%= render 'common/error', resource: wagon%>
+
+  <div>
+    <%= form.label :number, 'Number', style: "display: block" %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div>
+    <%= form.label :wagon_type, 'Type', style: "display: block" %>
+    <%= form.select :wagon_type, options_for_select(["Купе", "Плацкарт"],:prompt => ["Купе"]), :class => 'genForm_dropBox' %>
+  </div>
+
+  <div>
+    <%= form.label :top_places, 'Amount of top places', style: "display: block" %>
+    <%= form.number_field :top_places, :min => 0 %>
+  </div>
+
+  <div>
+    <%= form.label :lower_places, 'Amount of lower places', style: "display: block" %>
+    <%= form.number_field :lower_places, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :train, 'Train' %>
+    <%= form.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

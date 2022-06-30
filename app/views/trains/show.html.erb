@@ -1,7 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
 <strong>Train number: </strong><%= @train.number %> <br>
-<%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%>
+<%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%> <br>
+
+<% open_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Плацкарт' } %>
+<% coupe_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Купе' } %>
+
+<% wagon_places = 0 %>
+<% open_wagons.each { |w| wagon_places += w.top_places} %>
+<%= wagon_places %>
+
+<p>Плацкартных выгонов: <%= open_wagons.count %></p>
+<p>Купейных выгонов: <%= coupe_wagons.count %></p>
+
+<%# <p>Верхних купейных мест:<%= open_wagons_lower_places %> </p>
+<%# <p>Нижних купейных мест: <%= open_wagons_lower_places %> </p>
+<%# <p>Верхних плацкартных мест: <%= open_wagons_lower_places %> </p> %>
+<%# <p>Нижних плацкартных мест: <%= open_wagons_lower_places %> </p> %> %> %>
 
 <div style='margin-top: 10px;'>
   <%= link_to "Edit this train", edit_train_path(@train) %> |

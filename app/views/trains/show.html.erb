@@ -6,12 +6,12 @@
 <% open_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Плацкарт' } %>
 <% coupe_wagons = @train.wagons.select { |wagon| wagon.wagon_type == 'Купе' } %>
 
+<p>Плацкартных выгонов: <%= open_wagons.count %></p>
+<p>Купейных выгонов: <%= coupe_wagons.count %></p>
+
 <% wagon_places = 0 %>
 <% open_wagons.each { |w| wagon_places += w.top_places} %>
 <%= wagon_places %>
-
-<p>Плацкартных выгонов: <%= open_wagons.count %></p>
-<p>Купейных выгонов: <%= coupe_wagons.count %></p>
 
 <%# <p>Верхних купейных мест:<%= open_wagons_lower_places %> </p>
 <%# <p>Нижних купейных мест: <%= open_wagons_lower_places %> </p>

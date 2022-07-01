@@ -3,8 +3,8 @@
 <strong>Train number: </strong><%= @train.number %> <br>
 <%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%> <br>
 
-<% coupe_wagons = @train.wagons.filter { |w| w.type == 'CoupeWagon' } %>
-<% economy_wagons = @train.wagons.filter { |w| w.type == 'EconomyWagon' } %>
+<% coupe_wagons = @train.wagons.coupe_wagons %>
+<% economy_wagons = @train.wagons.economy_wagons %>
 
 <p>Coupe wagons total: <%= coupe_wagons.count %> </p>
 <p>Economy wagons total: <%= economy_wagons.count %> </p>
@@ -24,6 +24,14 @@
 <% places = 0 %>
 <% economy_wagons.each { |w| places += w.bottom_seats } %>
 <p>Нижних плацкартных мест: <%= places   %> </p>
+
+<p>
+  <ul>
+    <% @train.wagons.each do |wagon| %>
+      <li><%= link_to wagon.number, wagon %></li>
+    <% end %>
+  </ul>
+</p>
 
 <div style='margin-top: 10px;'>
   <%= link_to "Edit this train", edit_train_path(@train) %>

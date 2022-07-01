@@ -6,4 +6,8 @@ class Train < ApplicationRecord
 
   has_many :tickets
   has_many :wagons
+
+  def count_places(wagons_type, places_type)
+    wagons.where(type: wagons_type).sum(places_type)
+  end
 end

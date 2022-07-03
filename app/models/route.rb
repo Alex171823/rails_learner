@@ -2,9 +2,9 @@ class Route < ActiveRecord::Base
   validates :name, presence: true
   validate :stations_count
 
-  has_many :railway_stations_routes
-  has_many :railway_stations, through: :railway_stations_routes
-  has_many :trains
+  has_many :railway_stations_routes, dependent: :destroy
+  has_many :railway_stations, through: :railway_stations_routes, dependent: :nullify
+  has_many :trains, dependent: :nullify
 
   private
 

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :trains do
     resources :wagons
+    # STI required
     resources :sitting_wagons, controller: 'wagons', type: 'SittingWagon'
     resources :economy_wagon, controller: 'wagons', type: 'EconomyWagon'
     resources :sleeping_wagon, controller: 'wagons', type: 'SleepingWagon'

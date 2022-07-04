@@ -2,29 +2,12 @@
 
 <strong>Train number: </strong><%= @train.number %> <br>
 <%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%> <br>
-
-<% coupe_wagons = @train.wagons.coupe_wagons %>
-<% economy_wagons = @train.wagons.economy_wagons %>
-
-<p>Coupe wagons total: <%= coupe_wagons.count %> </p>
-<p>Economy wagons total: <%= economy_wagons.count %> </p>
-
-<% places = 0 %>
-<% coupe_wagons.each { |w| places += w.top_seats } %>
-<p>Верхних купейных мест:<%= places %> </p>
-
-<% places = 0 %>
-<% coupe_wagons.each { |w| places += w.bottom_seats } %>
-<p>Нижних купейных мест: <%= places %> </p>
-
-<% places = 0 %>
-<% economy_wagons.each { |w| places += w.top_seats } %>
-<p>Верхних плацкартных мест: <%= places %> </p>
-
-<% places = 0 %>
-<% economy_wagons.each { |w| places += w.bottom_seats } %>
-<p>Нижних плацкартных мест: <%= places   %> </p>
-
+<p>Coupe wagons total: <%= @train.wagons.coupe_wagons.count %> </p>
+<p>Economy wagons total: <%= @train.wagons.economy_wagons.count %> </p>
+<p>Верхних купейных мест:<%= @train.count_places('CoupeWagon', 'top_seats') %> </p>
+<p>Нижних купейных мест: <%= @train.count_places('CoupeWagon', 'bottom_seats') %> </p>
+<p>Верхних плацкартных мест: <%= @train.count_places('EconomyWagon', 'top_seats') %> </p>
+<p>Нижних плацкартных мест: <%= @train.count_places('EconomyWagon', 'bottom_seats')   %> </p>
 <p>
   <ul>
     <% @train.wagons.each do |wagon| %>

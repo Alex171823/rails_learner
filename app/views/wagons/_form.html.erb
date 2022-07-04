@@ -1,5 +1,4 @@
-<!--sti things -->
-<%= form_with(model: wagon.becomes(Wagon)) do |form| %>
+<%= form_with(model: wagon, url: url, method: method) do |form| %>
   <%= render 'common/error', resource: wagon%>
   <div>
     <%= form.label :number, 'Number', style: "display: block" %>
@@ -7,7 +6,8 @@
   </div>
   <div>
     <%= form.label :type, 'Type', style: "display: block" %>
-    <%= form.select :type, options_for_select(Wagon.subclasses.map { |cls| cls.name } + [Wagon.name]), :class => 'genForm_dropBox' %>
+    <%= form.select :type, options_for_select(Wagon.subclasses.map { |cls| cls.name } + [Wagon.name], Wagon.name),
+                    :class => 'genForm_dropBox' %>
   </div>
   <div>
     <%= form.label :top_seats, 'Amount of top places', style: "display: block" %>
@@ -28,10 +28,6 @@
   <div>
     <%= form.label :sitting_seats, 'Amount of sitting places', style: "display: block" %>
     <%= form.number_field :sitting_seats, :min => 0 %>
-  </div>
-  <div class="field">
-    <%= form.label :train, 'Train' %>
-    <%= form.collection_select :train_id, Train.all, :id, :number %>
   </div>
   <div>
     <%= form.submit %>

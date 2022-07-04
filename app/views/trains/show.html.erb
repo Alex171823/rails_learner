@@ -3,11 +3,8 @@
 <strong>Train number: </strong><%= @train.number %> <br>
 <%= @train.route.nil? ? 'Route isn\'t set for this train' : "Route: #{@train.route.name}"%> <br>
 
-<% coupe_wagons = @train.wagons.coupe_wagons %>
-<% economy_wagons = @train.wagons.economy_wagons %>
-
-<p>Coupe wagons total: <%= coupe_wagons.count %> </p>
-<p>Economy wagons total: <%= economy_wagons.count %> </p>
+<p>Coupe wagons total: <%= @train.coupe_wagons.count %> </p>
+<p>Economy wagons total: <%= @train.economy_wagons.count %> </p>
 
 <% places = 0 %>
 <% coupe_wagons.each { |w| places += w.top_seats } %>

@@ -8,4 +8,19 @@ class RailwayStation < ApplicationRecord
 
   # default_scope { order(:index_number) }
   scope :ordered_by_index, -> { order(index_number: :asc) }
+
+  def update_position(route, index)
+    station_route = station_route(route)
+    station_route&.update(index_number: index)
+  end
+
+  def index_number(route)
+    station_route(route).try(:index_number)
+  end
+
+  protected
+
+  def station_route(route)
+    @station_route ||= railway_stations_routes.where(route:).first
+  end
 end

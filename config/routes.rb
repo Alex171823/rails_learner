@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
 
-  resources :railway_stations do
-    patch :update_position, on: :member
-  end
   resources :trains do
     resources :wagons
     # STI required
@@ -13,5 +10,11 @@ Rails.application.routes.draw do
     resources :sleeping_wagon, controller: 'wagons', type: 'SleepingWagon'
     resources :coupe_wagons, controller: 'wagons', type: 'CoupeWagon'
   end
+
+  resources :railway_stations do
+    patch :update_position, on: :member
+  end
+
   resources :routes
+  resources :search, only: %i[new show edit]
 end

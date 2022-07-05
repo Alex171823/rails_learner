@@ -63,4 +63,8 @@ class WagonsController < ApplicationController
     params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats,
                                   :sitting_seats, :train_id)
   end
+
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
 end

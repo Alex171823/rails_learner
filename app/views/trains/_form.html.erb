@@ -16,6 +16,11 @@
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :ordering, "Order form tail" %>
+    <%= form.select :ordering, options_for_select([true, false], train.ordering || false ), class: 'form-control' %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

@@ -63,4 +63,8 @@ class WagonsController < ApplicationController
     w_p[:type] = Wagon.wagon_types.key(w_p[:type])
     w_p
   end
+
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
 end

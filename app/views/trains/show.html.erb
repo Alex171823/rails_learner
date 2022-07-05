@@ -10,8 +10,9 @@
 <p>Верхних плацкартных мест: <%= @train.count_places('EconomyWagon', 'top_seats') %> </p>
 <p>Нижних плацкартных мест: <%= @train.count_places('EconomyWagon', 'bottom_seats')   %> </p>
 
+
 <ul>
-  <% @train.wagons.each do |wagon| %>
+  <% @train.wagons_ordered.each do |wagon| %>
     <li>
       <p><%= link_to wagon.number, [@train, wagon] %></p>
     </li>

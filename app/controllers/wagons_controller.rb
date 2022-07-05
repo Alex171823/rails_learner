@@ -1,5 +1,5 @@
 class WagonsController < ApplicationController
-  before_action :set_wagon, only: %i[show edit update destroy]
+  before_action :set_wagon, only: %i[show update edit destroy]
 
   # GET /wagons
   def index
@@ -22,7 +22,7 @@ class WagonsController < ApplicationController
     @wagon = Wagon.new(wagon_params)
     respond_to do |format|
       if @wagon.save
-        format.html { redirect_to wagon_url(@wagon), notice: 'Wagon was successfully created.' }
+        format.html { redirect_to @wagon, notice: 'Wagon was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -33,7 +33,7 @@ class WagonsController < ApplicationController
   def update
     respond_to do |format|
       if @wagon.update(wagon_params)
-        format.html { redirect_to wagon_url(@wagon), notice: 'Wagon was successfully updated.' }
+        format.html { redirect_to @wagon, notice: 'Wagon was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -43,9 +43,8 @@ class WagonsController < ApplicationController
   # DELETE /wagons/1
   def destroy
     @wagon.destroy
-
     respond_to do |format|
-      format.html { redirect_to wagons_url, notice: 'Wagon was successfully destroyed.' }
+      format.html { redirect_to wagons_path, notice: 'Wagon was successfully destroyed.' }
     end
   end
 
@@ -58,6 +57,10 @@ class WagonsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def wagon_params
-    params.require(:wagon).permit(:number, :wagon_type, :top_places, :lower_places, :train_id)
+    w_p = params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats,
+                                        :side_bottom_seats, :train_id)
+    # change type value form human-readable to rails-valid
+    w_p[:type] = Wagon.wagon_types.key(w_p[:type])
+    w_p
   end
 end

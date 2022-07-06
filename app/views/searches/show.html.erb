@@ -1,10 +1,17 @@
 <h1>Найденные маршруты по вашему запросу: </h1>
-<% if @routes_found %>
-  <ul>
-    <% @routes_found.each do |route| %>
-      <li><%= route.name %></li>
-    <% end %>
-  </ul>
-<% else %>
+<% if @routes_found.empty? %>
   <p>По вашему запросу ничего не найдено</p>
-<% end %>
+<%  else  %>
+  <%  @routes_found.each do |route|  %>
+    -----------------------------------------------------------------
+    <p><%=  route.name  %> Следует по маршруту</p>
+    <% route.railway_stations.ordered_by_index.each do |station| %>
+      <p><%= station.title %> | Отправка: <%= RailwayStationsRoute.find_particular(route, station).dispatch_time %>,
+        Прибытие: <%= RailwayStationsRoute.find_particular(route, station).arrive_time %></p>
+    <% end %>
+    Поезда:
+    <% route.trains.each do |train| %>
+      <li><%= train.number %><%= button_to 'Купить билет', new_train_ticket_path(train), :method => :get %></li>
+    <% end %>
+  <% end %>
+<%  end %>

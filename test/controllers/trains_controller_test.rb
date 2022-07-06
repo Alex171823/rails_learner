@@ -23,7 +23,7 @@ class TrainsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to train_url(Train.last)
   end
 
-  test 'should show train' do
+  test 'should index train' do
     get train_url(@train)
     assert_response :success
   end

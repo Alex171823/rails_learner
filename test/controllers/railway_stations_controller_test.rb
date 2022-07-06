@@ -23,7 +23,7 @@ class RailwayStationsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to railway_station_url(RailwayStation.last)
   end
 
-  test 'should show railway_station' do
+  test 'should index railway_station' do
     get railway_station_url(@railway_station)
     assert_response :success
   end

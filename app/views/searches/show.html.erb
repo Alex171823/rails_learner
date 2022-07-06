@@ -1,0 +1,10 @@
+<h1>Найденные маршруты по вашему запросу: </h1>
+<% if @routes_found %>
+  <ul>
+    <% @routes_found.each do |route| %>
+      <li><%= route.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>По вашему запросу ничего не найдено</p>
+<% end %>

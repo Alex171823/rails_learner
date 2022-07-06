@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :routes
-  resources :search, only: %i[new show edit]
+  # resolves search as singular resource
+  resource :search, only: %i[new show]
+  resolve('Search') { [:search] }
 end

@@ -21,10 +21,12 @@ class WagonsController < ApplicationController
   # POST /wagons
   def create
     @wagon = @train.wagons.new(wagon_params)
-    if @wagon.save
-      redirect_to @train
-    else
-      render @train
+    respond_to do |format|
+      if @wagon.save
+        format.html { redirect_to @train, notice: 'Wagon was successfully updated.' }
+      else
+        render @train
+      end
     end
   end
 
@@ -42,6 +44,7 @@ class WagonsController < ApplicationController
   # DELETE /wagons/1
   def destroy
     @wagon.destroy
+
     respond_to do |format|
       format.html { redirect_to @train, notice: 'Wagon was successfully destroyed.' }
     end
@@ -54,14 +57,13 @@ class WagonsController < ApplicationController
     @wagon = Wagon.find(params[:id])
   end
 
-  def set_train
-    @train = Train.find(params[:train_id])
-  end
-
   # Only allow a list of trusted parameters through.
   def wagon_params
-    params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats,
-                                  :sitting_seats, :train_id)
+    w_p = params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats,
+                                        :side_bottom_seats, :train_id, :sitting_seats)
+    # changes type value form human-readable to rails-valid
+    w_p[:type] = Wagon.wagon_types.key(w_p[:type])
+    w_p
   end
 
   def set_train

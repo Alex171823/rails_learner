@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Wagons</h1>
+
+<div id="wagons">
+  <%= render partial: "wagon", collection: @wagons, as: :wagon %>
+</div>
+
+<%= link_to "New wagon", new_admin_train_path %>

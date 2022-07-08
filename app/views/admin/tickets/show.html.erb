@@ -1,0 +1,8 @@
+<p>Name: <%= @ticket.name %></p>
+<p>Train: <%= @ticket.train.number %></p>
+<p>Start_station: <%= @ticket.start_station.title %></p>
+<p>End station: <%= @ticket.end_station.title %></p>
+<p>User passport: <%= @ticket.passport %></p>
+<p><%= link_to "Edit", edit_admin_ticket_path(@ticket) %></p>
+<%= button_to "Destroy", [:admin, @ticket], method: :delete %>
+<p><%= link_to "Back", admin_tickets_path %></p>

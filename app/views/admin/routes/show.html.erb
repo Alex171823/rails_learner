@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @route %> <br>
+<% if @route.trains.empty? %>
+  <%= 'No trains for this route'  %>
+<% else %>
+  <p><strong>Trains on route:</strong></p>
+ <% @route.trains.each do |train| %>
+  <%= train.number %>
+  <% end %>
+<% end %>
+
+<p>Станции в маршруте</p>
+<p>
+  <% if @route.railway_stations.empty? %>
+    No railway stations for this route
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <td style="width: 100px;">Name</td>
+          <td>Index</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @route.railway_stations.ordered_by_index.each do |station| %>
+          <tr>
+            <td><%= station.title %></td>
+            <td>
+              <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
+                <%= number_field_tag :index_number, station.index_number(@route) %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>
+
+<div>
+  <%= link_to "Edit this route", edit_admin_route_url(@route) %> |
+  <%= link_to "Back to routes", admin_routes_path %>
+  <%= button_to "Destroy this route", admin_route_url(@route), method: :delete %>
+</div>

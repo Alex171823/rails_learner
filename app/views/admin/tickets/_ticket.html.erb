@@ -1,0 +1,10 @@
+<div id="<%= dom_id ticket %>">
+  <p>
+  <div style='border: 3px solid black; padding: 5px'>
+    <%= ticket.name %>
+    <%= link_to "Show", [:admin, ticket] %>
+    <%= link_to "Edit", edit_admin_ticket_path(ticket) %>
+    <%= button_to "Destroy", [:admin, ticket], method: :delete %>
+  </div>
+  </p>
+</div>

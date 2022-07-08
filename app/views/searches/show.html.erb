@@ -11,7 +11,7 @@
     <% end %>
     Поезда:
     <% route.trains.each do |train| %>
-      <li><%= train.number %><%= button_to 'Купить билет', new_train_ticket_path(train), :method => :get %></li>
+      <li><%= train.number %><%= button_to 'Купить билет', new_ticket_path, :method => :get, params: { train_id: train.id } %></li>
     <% end %>
   <% end %>
 <%  end %>

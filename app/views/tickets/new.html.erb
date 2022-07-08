@@ -2,21 +2,4 @@
 
 <p>You are buying ticket for train <%= @train.number %> on route <%= @train.route.name %></p>
 
-<%= form_with(model: @ticket, url: train_tickets_path) do |form| %>
-  <%= render 'common/error', resource: @ticket %>
-  <div>
-    <%= form.label :name, 'First name, last name', style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :passport, 'Passport', style: "display: block" %>
-    <%= form.text_field :passport %>
-  </div>
-  <div>
-    <%= form.label :user_id, 'User', style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :name, {}, { multiple: false } %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render 'form', url: tickets_path, method: :post %>

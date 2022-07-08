@@ -1,4 +1,4 @@
-class Admin::WagonsController < Admin::BaseAdminController
+class Admin::WagonsController < Admin::BaseController
   before_action :set_wagon, only: %i[show edit update destroy]
   before_action :set_train, only: %i[destroy create new]
 
@@ -25,15 +25,13 @@ class Admin::WagonsController < Admin::BaseAdminController
       if @wagon.save
         format.html { redirect_to admin_train_path(@train), notice: 'Wagon was successfully updated.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        render @train
       end
     end
   end
 
   # PATCH/PUT /wagons/1
   def update
-    w_p = wagon_params
-    @wagon = @wagon.becomes(w_p[:type].constantize)
     respond_to do |format|
       if @wagon.update(wagon_params)
         format.html { redirect_to admin_train_wagon_path(@wagon), notice: 'Wagon was successfully updated.' }
@@ -60,13 +58,12 @@ class Admin::WagonsController < Admin::BaseAdminController
   end
 
   # Only allow a list of trusted parameters through.
-  # Only allow a list of trusted parameters through.
   def wagon_params
-    params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats,
+    w_p = params.require(:wagon).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats,
                                         :side_bottom_seats, :train_id, :sitting_seats)
-    # # changes type value form human-readable to rails-valid
-    # w_p[:type] = Wagon.wagon_types.key(w_p[:type])
-    # w_p
+    # changes type value form human-readable to rails-valid
+    w_p[:type] = Wagon.wagon_types.key(w_p[:type])
+    w_p
   end
 
   def set_train

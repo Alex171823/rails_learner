@@ -1,4 +1,4 @@
-class Admin::TrainsController < Admin::BaseAdminController
+class Admin::TrainsController < Admin::BaseController
   before_action :set_train, only: %i[show edit update destroy]
 
   # GET /trains

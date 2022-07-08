@@ -7,21 +7,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :current_station %>
+    <%= form.label :current_station, "Current station" %>
     <%= form.collection_select :current_station_id, RailwayStation.all, :id, :title %>
   </div>
 
   <div class="field">
-    <%= form.label :route %>
+    <%= form.label :route, "Route" %>
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
 
   <div class="field">
-    <%= form.label :ordering %>
+    <%= form.label :ordering, "Order form tail" %>
     <%= form.select :ordering, options_for_select([true, false], train.ordering || false ), class: 'form-control' %>
   </div>
 
   <div>
-    <%= form.submit t('.submit', action: @train.new_record? ? 'Создать' : 'Изменить') %>
+    <%= form.submit %>
   </div>
 <% end %>

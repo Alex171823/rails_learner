@@ -2,7 +2,7 @@ class Wagon < ApplicationRecord
   # sets names to be displayed to user for each descendant of Wagon class
   @@wagon_types = { 'Wagon' => 'Abstract Wagon', 'CoupeWagon' => 'Coupe Wagon', 'EconomyWagon' => 'Economy Wagon',
                     'SittingWagon' => 'Sitting Wagon', 'SleepingWagon' => 'Sleeping Wagon' }
-  @@allowed_fields = %w[id number type train_id index_number]
+  @@allowed_fields = %w[id number type train_id index_number created_at updated_at]
 
   belongs_to :train, optional: true
 

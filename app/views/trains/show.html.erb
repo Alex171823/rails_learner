@@ -5,14 +5,16 @@
 
 <p>Coupe wagons total: <%= @train.wagons.coupe_wagons.count %> </p>
 <p>Economy wagons total: <%= @train.wagons.economy_wagons.count %> </p>
-
 <p>Верхних купейных мест:<%= @train.count_places('CoupeWagon', 'top_seats') %> </p>
-
 <p>Нижних купейных мест: <%= @train.count_places('CoupeWagon', 'bottom_seats') %> </p>
-
 <p>Верхних плацкартных мест: <%= @train.count_places('EconomyWagon', 'top_seats') %> </p>
-
 <p>Нижних плацкартных мест: <%= @train.count_places('EconomyWagon', 'bottom_seats')   %> </p>
+
+<ul>
+  <% @train.wagons_ordered.each do |wagon| %>
+    <li><%= link_to wagon.number, wagon %></li>
+  <% end %>
+</ul>
 
 <div style='margin-top: 10px;'>
   <%= link_to "Edit this train", edit_train_path(@train) %>

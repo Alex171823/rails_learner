@@ -10,11 +10,16 @@
 <p>Верхних плацкартных мест: <%= @train.count_places('EconomyWagon', 'top_seats') %> </p>
 <p>Нижних плацкартных мест: <%= @train.count_places('EconomyWagon', 'bottom_seats')   %> </p>
 
+
 <ul>
   <% @train.wagons_ordered.each do |wagon| %>
-    <li><%= link_to wagon.number, wagon %></li>
+    <li>
+      <p><%= link_to wagon.number, [@train, wagon] %></p>
+    </li>
   <% end %>
 </ul>
+<%= link_to 'Add wagon', new_train_wagon_path(@train)%>
+
 
 <div style='margin-top: 10px;'>
   <%= link_to "Edit this train", edit_train_path(@train) %>

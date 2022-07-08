@@ -4,8 +4,9 @@ class Train < ApplicationRecord
 
   belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id
   belongs_to :route
-  has_many :tickets
-  has_many :wagons
+
+  has_many :tickets, dependent: :nullify
+  has_many :wagons, dependent: :nullify
 
   def wagons_ordered
     order_options = { false => :asc, true => :desc }

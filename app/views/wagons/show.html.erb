@@ -10,10 +10,10 @@
 <% elsif @wagon.type == 'SittingWagon' %>
   <p>Sitting seats: <%= @wagon.sitting_seats %></p>
 <%end %>
-
 <div style='margin-top: 10px;'>
-  <%= link_to "Edit this wagon", edit_wagon_path(@wagon) %> |
-  <%= link_to "Back to wagons", wagons_path %>
-
-  <%= button_to "Destroy this wagon", @wagon, method: :delete %>
+  <%= link_to "Edit this wagon", edit_train_wagon_path(@wagon.train), url: train_wagons_path, method: :patch %> |
+  <%= button_to "Destroy this wagon", train_wagon_path, url: train_wagon_path, method: :delete %>
+</div>
+<div>
+  <%= link_to "Back", @wagon.train %>
 </div>

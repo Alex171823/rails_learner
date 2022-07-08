@@ -1,12 +1,11 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: %i[show edit update destroy]
 
   def index
     @routes = Route.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @route = Route.new
@@ -18,12 +17,11 @@ class RoutesController < ApplicationController
     if @route.save
       redirect_to @route
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @route.update(route_params)
@@ -45,6 +43,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name)
+    params.require(:route).permit(:name, railway_station_ids: [])
   end
 end

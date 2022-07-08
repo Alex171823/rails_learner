@@ -1,7 +1,11 @@
 <div id="<%= dom_id railway_station %>">
   <p>
-    <strong>Title:</strong>
-    <%= railway_station.title %>
+    <div style='border: 3px solid black; padding: 5px'>
+      <strong>Title:</strong>
+      <%= railway_station.title %>
+      <%= link_to "Show", railway_station %>
+      <%= link_to "Edit", edit_railway_station_path(railway_station) %>
+      <%= button_to "Destroy", railway_station, method: :delete %>
+    </div>
   </p>
-
 </div>

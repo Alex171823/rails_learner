@@ -8,8 +8,11 @@ class Train < ApplicationRecord
   has_many :wagons, dependent: :nullify
 
   def wagons_ordered
-    order_options = { false => :asc, true => :desc }
-    wagons.order(index_number: order_options[ordering])
+    if ordering == false
+      wagons.order(index_number: :asc)
+    else
+      wagons.order(index_number: :desc)
+    end
   end
 
   def count_places(wagons_type, places_type)

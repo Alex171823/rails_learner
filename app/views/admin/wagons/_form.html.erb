@@ -5,8 +5,7 @@
     <%= form.text_field :number %>
   </div>
     <%= form.label :type, 'Type', style: "display: block" %>
-    <%= form.select :type, options_for_select(Wagon.wagon_types.values, Wagon.wagon_types[wagon.type]),
-                    :class => 'genForm_dropBox' %>
+    <%= form.select :type, options_for_select(Wagon.wagon_types.invert, wagon.type) %>
   </div>
   <div>
     <%= form.label :top_seats, 'Amount of top places', style: "display: block" %>
@@ -22,6 +21,10 @@
   <div>
     <%= form.label :side_bottom_seats, 'Amount of side lower places', style: "display: block" %>
     <%= form.number_field :side_bottom_seats, :min => 0 %>
+  </div>
+  <div>
+    <%= form.label :sitting_seats, 'Amount of sitting places', style: "display: block" %>
+    <%= form.number_field :sitting_seats, :min => 0 %>
   </div>
   <div class="field">
     <%= form.label :train, 'Train' %>

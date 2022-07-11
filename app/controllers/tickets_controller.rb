@@ -27,7 +27,6 @@ class TicketsController < ApplicationController
                                              train_id: @train.id, user_id: current_user.id })
     @ticket = Ticket.new(params_to_create)
     if @ticket.save
-      # TODO: redirect to all tickets
       redirect_to @ticket
     else
       render :new

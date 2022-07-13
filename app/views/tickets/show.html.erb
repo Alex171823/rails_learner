@@ -1,0 +1,7 @@
+<p>You ordered ticket for <strong><%= @ticket.name %></strong> from
+  <strong><%= @ticket.start_station.title %></strong> to <strong><%= @ticket.end_station.title %></strong></p>
+<%= button_to "Delete this ticket", ticket_path, method: :delete %>
+<br>
+<%= button_to "Edit this ticket", edit_ticket_path, method: :get, params: { train_id: @ticket.train } %>
+<br>
+<%= button_to "Back to my tickets", tickets_path, method: :get %>

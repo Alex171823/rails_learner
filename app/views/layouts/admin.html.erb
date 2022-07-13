@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AdminPage</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%#= javascript_importmap_tags %>
+</head>
+
+<body>
+<p id="notice" class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<% if user_signed_in? %>
+  <h2><%= current_user.email %></h2>
+
+  <!--turbo method is now used cause of versions rendering specifics - it forces to REALLY use delete method-->
+  <!--or use buttons with method: :delete-->
+  <p><%= button_to 'Log out', destroy_user_session_path, method: :delete  %></p>
+<% else %>
+  <%= link_to 'Log in', new_user_session_path %>
+<% end %>
+------------------------------------------------------
+
+<%= yield %>
+</body>
+
+<footer style='position: fixed; left: 0; bottom: 0; width: 100%; text-align: center;'>
+  <p>(с) 2022 Алексей Бережной. Учебный проект в онлайн-школе <a href='http://www.thinknetica.com/'>Thinknetica</a></p>
+</footer>
+</html>

@@ -1,0 +1,6 @@
+<% current_user.tickets.each do |ticket| %>
+  <li>
+    On train <%= ticket.train.number %>
+    <%= link_to "Show", ticket %>
+  </li>
+<% end %>

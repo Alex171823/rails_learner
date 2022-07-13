@@ -1,0 +1,17 @@
+<%= form_with(model: @ticket) do |form| %>
+  <%= render 'common/error', resource: @ticket %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :passport, style: "display: block" %>
+    <%= form.text_field :passport %>
+  </div>
+  <div>
+    <%= hidden_field_tag 'train_id', @train.id  %>
+  </div>
+  <div>
+    <%= form.submit t('.submit', action: @ticket.new_record? ? 'Создать' : 'Изменить') %>
+  </div>
+<% end %>

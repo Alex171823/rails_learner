@@ -1,0 +1,23 @@
+ru:
+  common:
+    back: "Назад"
+    error: "Возникли ошибки"
+    log_in: "Войти"
+    log_out: "Выход"
+  admin:
+    railway_stations:
+      new:
+        title: "Новая станция"
+      form:
+        submit: "%{action} станцию"
+    trains:
+      new:
+        title: "Новый поезд"
+      form:
+        submit: "%{action} поезд"
+  tickets:
+    new:
+      title: "Новый билет"
+      info: "Вы покупаете билет на поезд %{train} по маршруту %{route}"
+    form:
+      submit: "%{action} билет"

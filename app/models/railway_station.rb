@@ -12,7 +12,7 @@ class RailwayStation < ApplicationRecord
   def update_position(route, index)
     # TODO: bulk update
     # get all records for this route
-    records = RailwayStationsRoute.where(route:)
+    records = RailwayStationsRoute.where(route: route)
     our_record = records.find_by(railway_station_id: self.id)
 
     # replace order
@@ -39,6 +39,6 @@ class RailwayStation < ApplicationRecord
   protected
 
   def station_route_relation(route)
-    @station_route ||= railway_stations_routes.where(route:).first
+    @station_route ||= railway_stations_routes.where(route: route).first
   end
 end

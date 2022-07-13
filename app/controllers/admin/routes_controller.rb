@@ -1,4 +1,4 @@
-class Admin::RoutesController < Admin::BaseController
+class Admin::RoutesController < Admin::BaseAdminController
   before_action :set_route, only: %i[show edit update destroy]
 
   def index

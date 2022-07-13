@@ -1,4 +1,4 @@
-class Admin::RailwayStationsController < Admin::BaseController
+class Admin::RailwayStationsController < Admin::BaseAdminController
   # must be at the first place
   before_action :set_railway_station, only: %i[show edit update destroy update_position]
 

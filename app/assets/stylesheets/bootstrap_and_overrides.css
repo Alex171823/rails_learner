@@ -3,4 +3,24 @@
 
   Static version of css will use Glyphicons sprites by default
   =require twitter-bootstrap-static/sprites
+  = require bootstrap_and_overrides
 */
+
+body {
+    background-color: #82E0AA;
+    font-size: 18px;
+}
+a {
+    color: black;
+}
+a:hover {
+    color: #D35400;
+}
+a:visited {
+    color: darkmagenta;
+}
+input, select {
+    background-color: #85C1E9;
+    border: 1px solid black;
+    border-radius: 5px;
+}

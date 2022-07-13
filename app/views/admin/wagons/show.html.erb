@@ -11,7 +11,7 @@
   <p>Sitting seats: <%= @wagon.sitting_seats %></p>
 <%end %>
 <div style='margin-top: 10px;'>
-  <%= link_to "Edit this wagon", edit_admin_train_wagon_path(@wagon.train), url: admin_train_wagons_path, method: :patch %> |
+  <%= link_to "Edit this wagon", edit_admin_train_wagon_path(@wagon.train), url: admin_train_wagons_path, method: :get %> |
   <%= button_to "Destroy this wagon", admin_train_wagon_path, url: admin_train_wagon_path, method: :delete %>
 </div>
 <div>

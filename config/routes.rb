@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   root 'welcome#index'
+  # root 'searches#new'
 
   namespace :admin do
     resources :tickets, except: %i[new]

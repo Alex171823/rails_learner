@@ -10,7 +10,7 @@ class CreateWagons < ActiveRecord::Migration[5.2]
       t.integer :side_bottom_seats
       t.integer :sitting_seats
 
-      t.belongs_to :train, index: true
+      t.belongs_to :train
       t.integer :index_number
 
       t.timestamps

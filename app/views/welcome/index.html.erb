@@ -1,5 +1,12 @@
-<p><%= link_to 'Список станций', admin_railway_stations_path %></p>
-<p><%= link_to 'Список поездов', admin_trains_path %></p>
-<p><%= link_to 'Список маршрутов', admin_routes_path %></p>
-<p><%= link_to 'Билеты', admin_tickets_path %></p>
-<p><%= link_to 'Поиск', new_search_path %></p>
+<div class="row">
+  <div class="col-md-4">
+    <p><%= link_to 'Список станций', admin_railway_stations_path %></p>
+    <p><%= link_to 'Список поездов', admin_trains_path %></p>
+    <p><%= link_to 'Список маршрутов', admin_routes_path %></p>
+    <p><%= link_to 'Билеты', admin_tickets_path %></p>
+    <p><%= link_to 'Поиск', new_search_path %></p>
+  </div>
+  <div class="col-md-8">
+    <%= image_tag("dog.jpeg", width: 300) %>
+  </div>
+</div>

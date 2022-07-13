@@ -1,4 +1,4 @@
-class Admin::TicketsController < Admin::BaseController
+class Admin::TicketsController < Admin::BaseAdminController
   before_action :set_ticket, only: %i[show destroy edit update]
 
   def index

@@ -5,4 +5,17 @@ class Ticket < ApplicationRecord
   belongs_to :user
 
   validates :name, :passport, :user_id, presence: true
+
+  after_create :send_email_on_buy
+  after_destroy :send_email_on_delete
+
+  private
+
+  def send_email_on_buy
+    TicketsMailer.buy_ticket(self.user, self ).deliver_now
+  end
+
+  def send_email_on_delete
+    TicketsMailer.delete_ticket(self.user, self ).deliver_now
+  end
 end

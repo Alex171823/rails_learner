@@ -1,4 +1,4 @@
 <p>Привет, <%= @user.email %></p>
-<p>Вы купили билет по маршруту <%= @ticket.route.name %></p>
+<p>Вы купили билет со станции <%= @ticket.start_station.title %> на станцию <%= @ticket.end_station.title %> </p>
 <p>Посмотреть билет можно <%= link_to "здесь", @ticket %></p>
 <p>Все ваши билеты: <%= link_to "тык", tickets_url %></p>

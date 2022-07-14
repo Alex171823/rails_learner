@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_07_13_145359) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "railway_stations", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 2022_07_13_145359) do
     t.integer "end_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "passport"
     t.index ["end_station_id"], name: "index_tickets_on_end_station_id"
     t.index ["start_station_id"], name: "index_tickets_on_start_station_id"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 2022_07_13_145359) do
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "current_station_id"
-    t.integer "route_id"
+    t.bigint "current_station_id"
+    t.bigint "route_id"
     t.boolean "ordering", default: false
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 2022_07_13_145359) do
     t.integer "side_top_seats"
     t.integer "side_bottom_seats"
     t.integer "sitting_seats"
-    t.integer "train_id"
+    t.bigint "train_id"
     t.integer "index_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

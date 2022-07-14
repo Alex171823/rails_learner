@@ -1,6 +1,5 @@
 class Train < ApplicationRecord
   validates :number, presence: true
-  validates :ordering, presence: true
 
   belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id
   belongs_to :route
@@ -9,8 +8,11 @@ class Train < ApplicationRecord
   has_many :wagons, dependent: :nullify
 
   def wagons_ordered
-    order_options = { false => :asc, true => :desc }
-    wagons.order(index_number: order_options[ordering])
+    if ordering == false
+      wagons.order(index_number: :asc)
+    else
+      wagons.order(index_number: :desc)
+    end
   end
 
   def count_places(wagons_type, places_type)

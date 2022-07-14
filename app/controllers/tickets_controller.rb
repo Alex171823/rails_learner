@@ -1,35 +1,46 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, exclude: %i[new]
   before_action :new_ticket, only: %i[new]
-  before_action :set_train, only: %i[new show]
-  before_action :set_ticket, only: %i[show destroy]
+  before_action :set_train, only: %i[new create edit]
+  before_action :set_ticket, only: %i[show destroy edit update]
+  before_action :check_user, only:  %i[show destroy edit update]
+
+
+  def destroy
+    @ticket.destroy
+    redirect_to tickets_path
+  end
+
+  def update
+    respond_to do |format|
+      if @ticket.update(ticket_params)
+        format.html { redirect_to @ticket, notice: 'Wagon was successfully updated.' }
+      else
+        format.html { redirect_to tickets_path, notice: 'Ticket wasn\'t changed' }
+      end
+    end
+  end
 
   def create
-    train = Train.find(params[:train_id])
-    stations = train.route.railway_stations.ordered_by_index
-    start_station = stations.first
-    end_station = stations.last
-    params_to_create = ticket_params
-    params_to_create[:start_station] = start_station
-    params_to_create[:end_station] = end_station
-    params_to_create[:train_id] = train.id
+    stations = @train.route.railway_stations.ordered_by_index
+    params_to_create = ticket_params.merge({ start_station: stations.first, end_station: stations.last,
+                                             train_id: @train.id, user_id: current_user.id })
     @ticket = Ticket.new(params_to_create)
     if @ticket.save
-      redirect_to train_ticket_path(train, @ticket)
+      redirect_to @ticket
     else
       render :new
     end
   end
 
-  def destroy
-    @ticket.destroy
-    redirect_to new_search_path
-  end
-
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def new_ticket
     @ticket = Ticket.new
+  end
+
+  def check_user
+    redirect_to root_path, alert: 'You can\'t edit this ticket' unless current_user == @ticket.user
   end
 
   def set_ticket
@@ -40,8 +51,7 @@ class TicketsController < ApplicationController
     @train = Train.find(params[:train_id])
   end
 
-  # Only allow a list of trusted parameters through.
   def ticket_params
-    params.require(:ticket).permit(:name, :passport, :user_id, :train_id)
+    params.require(:ticket).permit(:name, :passport, :train_id)
   end
 end

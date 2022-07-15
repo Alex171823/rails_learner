@@ -2,9 +2,12 @@
   <p>
     <div style='border: 3px solid black; padding: 5px'>
       <strong>Title:</strong>
-      <%= train.number %>
+      <div id='train-number-<%= train.id %>'>
+        <%= train.number %>
+      </div>
+      <%= render 'admin/trains/form', train: train, hidden: true, show_options: false %>
       <%= link_to "Show", [:admin, train] %>
-      <%= link_to "Edit", edit_admin_train_path(train) %>
+      <%= link_to "Edit", '', class: "edit_train_link", data: { train_id: train.id } %>
       <%= button_to "Destroy", [:admin, train], method: :delete %>
     </div>
   </p>

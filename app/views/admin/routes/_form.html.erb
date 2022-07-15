@@ -1,11 +1,11 @@
-<%= form_with(model: [:admin, route]) do |form| %>
+<%= form_with model: [:admin, route], html: { id: "edit-form-#{route.id}", style: "display: #{hidden ? 'none' : 'block' }"} do |form| %>
   <% if route.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(route.errors.count, "error") %> prohibited this route from being saved:</h2>
 
       <ul>
         <% route.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li><%= error %></li>
         <% end %>
       </ul>
     </div>
@@ -16,9 +16,11 @@
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :railway_station_ids, "Stations for route" %>
-    <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true } %>
+  <div id="optional-shown" style="display: <%= show_options ? 'block' : 'none'  %>">
+    <div>
+      <%= form.label :railway_station_ids, "Stations for route" %>
+      <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true, selected: route.railway_station_ids } %>
+    </div>
   </div>
 
   <div>

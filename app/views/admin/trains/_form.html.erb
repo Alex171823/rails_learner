@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, train]) do |form| %>
+<%= form_with model: [:admin, train], html: { id: "edit-form-#{train.id}", style: "display: #{hidden ? 'none' : 'block' }"} do |form| %>
   <%= render 'common/error', resource: train%>
 
   <div>
@@ -6,22 +6,24 @@
     <%= form.text_field :number %>
   </div>
 
-  <div class="field">
-    <%= form.label :current_station %>
-    <%= form.collection_select :current_station_id, RailwayStation.all, :id, :title %>
-  </div>
+  <div id="optional-shown" style="display: <%= show_options ? 'block' : 'none'  %>">
+    <div class="field">
+      <%= form.label :current_station %>
+      <%= form.collection_select :current_station_id, RailwayStation.all, :id, :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :route %>
-    <%= form.collection_select :route_id, Route.all, :id, :name %>
-  </div>
+    <div class="field">
+      <%= form.label :route %>
+      <%= form.collection_select :route_id, Route.all, :id, :name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :ordering %>
-    <%= form.select :ordering, options_for_select([true, false], train.ordering || false ), class: 'form-control' %>
-  </div>
+    <div class="field">
+      <%= form.label :ordering %>
+      <%= form.select :ordering, options_for_select([true, false], train.ordering || false ), class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.submit t('.submit', action: @train.new_record? ? 'Создать' : 'Изменить') %>
+    <div>
+      <%= form.submit t('.submit', action: train.new_record? ? 'Создать' : 'Изменить') %>
+    </div>
   </div>
 <% end %>

@@ -12,6 +12,8 @@ gem 'devise'
 # FRONT
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
+gem 'jquery-rails'
+gem 'webpacker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

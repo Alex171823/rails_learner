@@ -25,7 +25,7 @@ class Admin::RoutesController < Admin::BaseAdminController
 
   def update
     if @route.update(route_params)
-      redirect_to admin_route_path(@route)
+      redirect_to admin_routes_path
     else
       render :edit, status: :unprocessable_entity
     end

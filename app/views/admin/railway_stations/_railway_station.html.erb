@@ -1,11 +1,11 @@
-<div id="<%= dom_id railway_station %>">
-  <p>
-    <div style='border: 3px solid black; padding: 5px'>
-      <strong>Title:</strong>
-      <%= railway_station.title %>
-      <%= link_to "Show", admin_railway_station_path(railway_station) %>
-      <%= link_to "Edit", edit_admin_railway_station_path(railway_station) %>
-      <%= button_to "Destroy", admin_railway_station_path(railway_station), method: :delete %>
-    </div>
-  </p>
+<div style='border: 3px solid black; padding: 5px'>
+  <strong>Title:</strong>
+  <div id="railway-station-title-<%= railway_station.id %>">
+    <%= railway_station.title %>
+  </div>
+  <%= render 'admin/railway_stations/form', station: railway_station, hidden: true %>
+  <%= link_to "Show", admin_railway_station_path(railway_station) %>
+  <%= link_to "Edit", '', class: 'edit_station_link', data: { station_id: railway_station.id } %>
+  <%= button_to "Destroy", admin_railway_station_path(railway_station), method: :delete %>
 </div>
+

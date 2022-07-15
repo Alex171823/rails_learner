@@ -44,10 +44,11 @@ class Admin::RailwayStationsController < Admin::BaseAdminController
     respond_to do |format|
       if @railway_station.update(railway_station_params)
         format.html do
-          redirect_to admin_railway_station_url(@railway_station), notice: 'Railway station was successfully updated.'
+          redirect_to admin_railway_stations_path, notice: 'Updated'
+          # redirect_to admin_railway_station_url(@railway_station), notice: 'Railway station was successfully updated.'
         end
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end

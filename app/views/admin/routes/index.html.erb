@@ -3,12 +3,7 @@
 <h1>Routes</h1>
 
 <div id="routes">
-  <% @routes.each do |route| %>
-    <%= render route %>
-    <p>
-      <%= link_to "Show this route", admin_route_path(route) %>
-    </p>
-  <% end %>
+    <%= render @routes %>
 </div>
 
 <%= link_to "New route", new_admin_route_path %>

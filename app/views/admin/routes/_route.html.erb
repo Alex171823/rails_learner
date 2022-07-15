@@ -1,7 +1,9 @@
-<div id="<%= dom_id route %>">
+<div id="<%= dom_id route %>" style="border: 2px solid black; border-radius: 20px; margin: 10px auto; text-align: center" >
   <p>
     <strong>Title:</strong>
     <%= route.name %>
   </p>
-
+  <%= render 'admin/routes/form', route: route, hidden: true, show_options: false %>
+  <p><%= link_to "Edit", '', class: "edit_route_link", data: { route_id: route.id } %></p>
+  <p><%= link_to "Show this route", admin_route_path(route) %></p>
 </div>

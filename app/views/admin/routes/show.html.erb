@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @route %> <br>
+<%= @route.name %>
 <% if @route.trains.empty? %>
   <%= 'No trains for this route'  %>
 <% else %>

@@ -5,7 +5,7 @@ ru:
       train: "Поезд"
       route: "Маршрут"
       ticket: "Билет"
-      wagon: "Поезд"
+      wagon: "Вагон"
     attributes:
       railway_station:
         title: "Название"

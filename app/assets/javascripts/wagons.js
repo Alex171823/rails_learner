@@ -12,7 +12,6 @@ document.addEventListener("turbolinks:load", function() {
 
         $('.seats').each(function() {
             let a = $(this).find(':input').val('')
-            console.log(a)
             $(this).hide();
         })
 
